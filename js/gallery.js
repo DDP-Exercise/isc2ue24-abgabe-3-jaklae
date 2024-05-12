@@ -36,20 +36,22 @@ function prepareLinks() {
         let Links = document.querySelectorAll("#thumbnails .card-link");
         // TODO: Set an event listener for the click event on every <a> element.
         //  (or advanced: think of a way to do it with one single handler)
-
+        // console.log(Links)
         Links.forEach((element) => {
             element.addEventListener("click", function (event) {
-                if (event.target.classList.contains("card-link")) {
+                if (event.target.classList.contains("img-thumbnail")) {
                     // Remove the .bg-dark and .text-white classes from all cards
                     document.querySelectorAll(".card").forEach(function (card) {
                         card.classList.remove("bg-dark", "text-white");
                     });
                     // Add both classes again to the card where the click happened
                     event.target.closest(".card").classList.add("bg-dark", "text-white");
-
                     // Call switchFullImage() with the URL clicked link and the alt attribute of the thumbnail
-                    let imageURL = event.target.href;
-                    let altText = event.target.querySelector("img").alt;
+
+                    console.log(event.target);
+
+                    let imageURL = event.target.parentElement.href;
+                    let altText = event.target.alt;
                     switchFullImage(imageURL, altText);
 
                     // Implement and then call loadNotes() with the key for the current image
